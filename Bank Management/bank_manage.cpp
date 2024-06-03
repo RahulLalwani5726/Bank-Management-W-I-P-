@@ -5,7 +5,7 @@ class bank
 protected:
     string name;
     static int total_acc;
-    int A_no = 0;
+    long long int A_no = 0;
     string pass = "";
     long double ammount = 0;
     friend void find(bank a[], int len);
