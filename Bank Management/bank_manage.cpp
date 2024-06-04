@@ -3,6 +3,7 @@ using namespace std;
 class bank
 {
 protected:
+    string Account_sta;
     string name;
     static int total_acc;
     long long int A_no = 0;
@@ -18,6 +19,17 @@ public:
     // ------------------------- Creating---------------------------------
     void create()
     {
+        cout << "what type you Want to create Account \n1. Current Account \t|\t 2. Saving Account\n";
+        int a;
+        cin >> a;
+        if (a == 1)
+        {
+            Account_sta = "Current Account";
+        }
+        else
+        {
+            Account_sta = "Saving Account ";
+        }
         system("cls");
         cout << "Enter Your name: ";
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -39,8 +51,9 @@ public:
             return;
         }
         system("cls");
-        cout << "Account Holder name : " << name;
-        cout << "\nYour Account NUMBER is :-> " << A_no << endl;
+        cout << "Account Status : " << Account_sta << endl;
+        cout << "Account Holder name : " << name << endl;
+        cout << "Your Account NUMBER is :-> " << A_no << endl;
         cout << "Your Total ammount is :-> " << ammount << endl;
         cout << "Your Password is :-> " << pass << endl;
         cout << "YOUR KEY IS : " << total_acc - 1 << endl;
@@ -116,8 +129,8 @@ void modi(bank &o, string p)
     {
         int a;
         cout << "What You Modify :\n";
-        cout << "1. Name    \t|\t 2. Password\n";
-        cout << "0. Exit\n";
+        cout << "1. Name         \t|\t 2. Password\n";
+        cout << "3. Account Type \t|\t 0. Exit\n";
         cin >> a;
         switch (a)
         {
@@ -130,6 +143,19 @@ void modi(bank &o, string p)
         case 2:
             cout << "Enter Password: \n";
             cin >> o.pass;
+            break;
+        case 3:
+            cout << "what type you Want to create Account \n1. Current Account \t|\t 2.Saving Account\n";
+            int a;
+            cin >> a;
+            if (a == 1)
+            {
+                o.Account_sta = "Current Account";
+            }
+            else
+            {
+                o.Account_sta = "Saving Account ";
+            }
             break;
         case 0:
             return;
@@ -229,9 +255,9 @@ class manage
                         {
                             int a;
                             cout << "What You Modify :\n";
-                            cout << "1. Name    \t|\t 2. Password\n";
-                            cout << "3. Ammount \t|\t 4. Account NO\n";
-                            cout << "0. Exit\n";
+                            cout << "1. Name         \t|\t 2. Password\n";
+                            cout << "3. Ammount      \t|\t 4. Account NO\n";
+                            cout << "5. Account Type \t|\t 0. Exit\n";
                             cin >> a;
                             switch (a)
                             {
@@ -255,6 +281,19 @@ class manage
                                 cout << "Enter A/C NO: ";
                                 cin >> arr[i].A_no;
                                 break;
+                            case 5:
+                                cout << "what type you Want to create Account \n1. Current Account \t|\t 2.Saving Account\n";
+                                int a;
+                                cin >> a;
+                                if (a == 1)
+                                {
+                                    arr[i].Account_sta = "Current Account";
+                                }
+                                else
+                                {
+                                    arr[i].Account_sta = "Saving Account ";
+                                }
+                                break;
 
                             case 0:
                                 return;
@@ -277,9 +316,9 @@ class manage
             {
                 int a;
                 cout << "What You Modify :\n";
-                cout << "1. Name    \t|\t 2. Password\n";
-                cout << "3. Ammount \t|\t 4. Account NO\n";
-                cout << "0. Exit\n";
+                cout << "1. Name         \t|\t 2. Password\n";
+                cout << "3. Ammount      \t|\t 4. Account NO\n";
+                cout << "5. Account Type \t|\t 0. Exit\n";
                 cin >> a;
                 switch (a)
                 {
@@ -302,6 +341,19 @@ class manage
                 case 4:
                     cout << "Enter A/C NO: ";
                     cin >> arr[k].A_no;
+                    break;
+                case 5:
+                    cout << "what type you Want to create Account \n1. Current Account \t|\t 2.Saving Account\n";
+                    int a;
+                    cin >> a;
+                    if (a == 1)
+                    {
+                        arr[k].Account_sta = "Current Account";
+                    }
+                    else
+                    {
+                        arr[k].Account_sta = "Saving Account ";
+                    }
                     break;
 
                 case 0:
@@ -354,10 +406,12 @@ public:
             {
                 cout << "1. Show All Account \t|\t 2. Show Key Account\n";
                 cin >> a;
-                if(a == 1){
-                del_show(arr, d_u, d_len);
+                if (a == 1)
+                {
+                    del_show(arr, d_u, d_len);
                 }
-                else if(a == 2){
+                else if (a == 2)
+                {
                     cout << "Enter Key: ";
                     int k;
                     cin >> k;
@@ -388,8 +442,9 @@ int main()
          << "===================================================================================================\n"
          << "\t\t\t\t       Main Meniu"
          << "\n===================================================================================================\n";
-    static int i;
+    static int i = 0;
     static int d = 0;
+    // vector<bank> arr;
     bank arr[999];
     int d_u[999];
     while (true)
@@ -400,12 +455,11 @@ int main()
         cout << "1. Create Account " << "\t|\t2. Show Detail    \n";
         cout << "3. Deposite Money " << "\t|\t4. Withdraw Money \n";
         cout << "5. Modify Account " << "\t|\t6. Delete Account \n";
-        // cout<<"7. Create Account "<<"\t|\t2. Show Detail ";
         int a;
         cin >> a;
         if (a == 1)
         {
-            for (; i < 999;)
+            while (true)
             {
                 arr[i].create();
                 i++;
