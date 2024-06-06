@@ -57,14 +57,42 @@ public:
         cout << "Your Total ammount is :-> " << ammount << endl;
         cout << "Your Password is :-> " << pass << endl;
         cout << "YOUR KEY IS : " << total_acc - 1 << endl;
+        string s = name;
+        s += "_";
+        s += to_string(A_no);
+        // s +=total_acc;
+        s += "_Detail.txt";
+        char a;
+        cout << "Press 1 For Get DETAIL in TEXT: ";
+        getchar();
+        a = getchar();
+        if (a == '1')
+        {
+            cout << "Genrating Respit \n \t 100%\n ";
+            ofstream f;
+            f.open(s, std::fstream::__noreplace);
+            f << "\t\t\t\tAccount Detail Respit\n"
+              << "=================================================================\n";
+            f << "Account Type: " << Account_sta << endl;
+            f << "Account KEY: " << total_acc - 1 << endl;
+            f << "The Account Holer Name: " << name << endl;
+            f << "Account NO: " << A_no << endl;
+            f << "Account Password: " << pass << endl;
+            f << "Total Balance: " << ammount << endl;
+        }
+        cout << "Press Enter to Continue...";
         getchar();
     }
     // ------------------------Depositing--------------------------------------
+    long long int i = 0;
     void deposite(string p)
     {
+        system("cls");
         if (p != pass)
         {
-            cout << "Invalid Password !!";
+            cout << "\nInvalid Password !!";
+            getchar();
+            getchar();
             return;
         }
         system("cls");
@@ -72,23 +100,54 @@ public:
         cout << "\nenter Your ammount total ammount: \n";
         cin >> am;
         temp = ammount;
-        ammount = am;
+        ammount += am;
         cout << "\nYour previous ammount is " << temp << endl;
         cout << "\nYour current ammount is " << ammount << endl;
+        char a;
+        getchar();
+        a = getchar();
+        cout << "Press 1 For Get Respit: ";
+        if (a == '1')
+        {
+            string s = name;
+            s += "_";
+            s += to_string(A_no);
+            s += "_";
+            s += to_string(i);
+            // s +=total_acc;
+            s += "_Deposite.txt";
+            cout << "Genrating Respit \n\n \t 100%\n ";
+            ofstream f;
+            f.open(s, std::fstream::__noreplace);
+            f << "\t\t\t\tDeposite Respit\n"
+              << "=================================================================\n";
+            f << "Account Type: " << Account_sta << endl;
+            f << "\nThe Account Holer Name: " << name << endl;
+            f << "Account NO: " << A_no << endl;
+            f << "deposite Ammount: " << am << endl;
+            f << "Total Balance: " << ammount << endl;
+            f.close();
+            i++;
+        }
+        cout << "Press Enter to Continue...";
         getchar();
         getchar();
     }
     // -----------------------Withdraw-------------------------------------
+    long long int j = 0;
     void withdraw(string p)
     {
+        system("cls");
         if (p != pass)
         {
-            cout << "Invalid Password !!";
+            cout << "\nInvalid Password !!";
+            getchar();
+            getchar();
             return;
         }
+    l:
         system("cls");
         cout << "Your Total Balance is : " << ammount << endl;
-    l:
         long double with;
         cout << "Enter your Withdraw ammount: \n";
         cin >> with;
@@ -98,6 +157,33 @@ public:
             goto l;
         }
         ammount = ammount - with;
+        cout << "\nTotal Balance is: " << ammount << endl;
+        string s = name;
+        s += "_";
+        s += to_string(A_no);
+        s += "_";
+        s += to_string(j);
+        s += "_Withdraw.txt";
+        cout << "Genrating Respit \n\n \t 100%\n ";
+        char a;
+        cout << "Press 1 For Get Respit: ";
+        getchar();
+        a = getchar();
+        if (a == '1')
+        {
+            cout << "Genrating Respit \n \t 0%\n ";
+            ofstream f;
+            f.open(s, fstream::__noreplace);
+            f << "\t\t\t\tWithDraw Respit\n"
+              << "=================================================================\n";
+            f << "Account Type: " << Account_sta << endl;
+            f << "\nThe Account Holer Name: " << name << endl;
+            f << "Account NO: " << A_no << endl;
+            f << "Withdraw Ammount: " << with << endl;
+            f << "Total Balance: " << ammount << endl;
+            j++;
+        }
+        cout << "Press Enter to Continue...";
     }
 };
 int bank ::total_acc = 0;
@@ -109,10 +195,12 @@ int ch_del(int key, int d_u[], int d)
         if (d_u[j] == key)
         {
             cout << "The account is not found OR Might be Deleted.\n";
+            cout << "Press Enter to Continue...";
             getchar();
             return 0;
         }
     }
+    cout << "Press Enter to Continue...";
     return 1;
 }
 // --------------- Modify Account-------------------------------------------
@@ -122,6 +210,7 @@ void modi(bank &o, string p)
     if (o.pass != p)
     {
         cout << "Invalid Password !!";
+        cout << "Press Enter to Continue...";
         getchar();
         return;
     }
@@ -185,6 +274,7 @@ class manage
                 else
                 {
                     arr[i].show(arr[i].pass);
+                    cout << "Press Enter to Continue...";
                     getchar();
                 }
             }
@@ -202,6 +292,7 @@ class manage
         {
 
             ar[del[i]].show(ar[del[i]].pass);
+            cout << "Press Enter to Continue...";
             getchar();
         }
     }
@@ -223,6 +314,7 @@ class manage
             {
                 cout << "User was found: ";
                 a[j].show(a->pass);
+                cout << "Press Enter to Continue...";
                 getchar();
                 return;
             }
@@ -375,6 +467,7 @@ public:
              << "\t\t\t\tYour Enter Bank Manage Account\n\n"
              << "\t\t\t\t         Main Meniu\n\n"
              << "\n===================================================================================================\n";
+        cout << "\nPress Enter to Continue...";
         while (true)
         {
             getchar();
@@ -442,6 +535,8 @@ int main()
          << "===================================================================================================\n"
          << "\t\t\t\t       Main Meniu"
          << "\n===================================================================================================\n";
+    cout << "Press Enter to Continue...";
+
     static int i = 0;
     static int d = 0;
     // vector<bank> arr;
