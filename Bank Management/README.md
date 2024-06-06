@@ -1,77 +1,97 @@
-﻿# Bank Management System
+# Bank Management System
 
-This project is a simple bank management system implemented in C++. It allows users to create accounts, deposit and withdraw money, modify account details, and manage accounts using a command-line interface.
+## Overview
+
+This project is a simple console-based Bank Management System implemented in C++. It allows users to create, manage, and delete bank accounts. It also provides functionalities for depositing and withdrawing money, and modifying account details. Additionally, it includes an administrative interface for managing all accounts.
 
 ## Features
 
-- **Create Account**: Users can create a new bank account by providing their name and password. Each account is assigned a unique account number.
-- **Show Account Details**: Users can view their account details by entering their account key and password.
-- **Deposit Money**: Users can deposit money into their account by entering their account key, password, and the amount to deposit.
-- **Withdraw Money**: Users can withdraw money from their account by entering their account key, password, and the amount to withdraw.
-- **Modify Account**: Users can modify their account details, such as name and password, by entering their account key and password.
-- **Delete Account**: Users can delete their account by entering their account key and password. Deleted accounts are tracked separately.
-- **Manage Accounts**: An admin can manage all accounts, including viewing all accounts, finding accounts by name, and modifying account details.
+1. **Account Creation**
+    - Current Account
+    - Savings Account
 
-## Class Structure
+2. **Account Management**
+    - Show Account Details
+    - Deposit Money
+    - Withdraw Money
+    - Modify Account Details
+    - Delete Account
+
+3. **Administrative Management**
+    - Show All Accounts
+    - Show Deleted Accounts
+    - Find Account by Name
+    - Modify Account by Key
+
+## Classes and Methods
 
 ### `bank` Class
 
-This class represents a bank account and provides the following functionalities:
-- **create**: Creates a new account.
-- **show**: Displays account details.
-- **deposite**: Deposits money into the account.
-- **withdraw**: Withdraws money from the account.
-- **modi**: Modifies account details.
+#### Protected Members
+- `string Account_sta`: Stores the account type (Current or Savings).
+- `string name`: Stores the name of the account holder.
+- `static int total_acc`: Static member to keep track of the total number of accounts.
+- `long long int A_no`: Stores the account number.
+- `string pass`: Stores the password for the account.
+- `long double ammount`: Stores the balance in the account.
+
+#### Friend Functions
+- `void find(bank a[], int len)`: Finds an account by the account holder's name.
+- `void del_show(bank ar[], int del[], int len)`: Shows deleted accounts.
+- `void modi(bank &o, string p)`: Modifies an account.
+- `class manage`: A friend class to manage bank accounts.
+
+#### Public Methods
+- `void create()`: Creates a new account.
+- `void show(string p)`: Shows account details.
+- `void deposite(string p)`: Deposits money into the account.
+- `void withdraw(string p)`: Withdraws money from the account.
 
 ### `manage` Class
 
-This class provides functionalities to manage multiple accounts:
-- **show_o**: Displays all open accounts.
-- **show_o_k**: Displays details of a specific account by key.
-- **del_show**: Displays all deleted accounts.
-- **show_d_k**: Displays details of a deleted account by key.
-- **find**: Finds an account by name.
-- **modify**: Modifies account details.
+#### Private Methods
+- `void show_o(bank arr[], int o_len, int del[], int d_len)`: Shows all open accounts.
+- `void show_o_k(bank &o)`: Shows account details by key.
+- `void show_d_k(bank &o)`: Shows deleted account details by key.
+- `void find(bank a[], int len)`: Finds an account by the account holder's name.
+- `void modify(bank arr[], int o_len, int del[], int d_len)`: Modifies account details.
 
-## Friend Functions
+#### Public Methods
+- `void entr(bank arr[], int d_u[], int d_len, int o_len)`: Entry point for the administrative interface.
 
-- **find**: Finds an account by name.
-- **del_show**: Displays deleted accounts.
-- **modi**: Modifies account details.
-- **ch_del**: Checks if an account is deleted.
+### Other Functions
+- `int ch_del(int key, int d_u[], int d)`: Checks if an account is deleted.
 
 ## Usage
 
-To use the bank management system, compile and run the program. Follow the on-screen instructions to create and manage accounts. The main menu provides options to create accounts, show account details, deposit and withdraw money, modify accounts, delete accounts, and manage accounts.
+To use the Bank Management System, compile and run the `main` function. The system will prompt you to enter commands to perform various operations.
 
-### Main Menu
+### Commands in Main Menu
 
-1. **Create Account**: Create a new bank account.
-2. **Show Detail**: Show account details by entering the account key and password.
-3. **Deposite Money**: Deposit money into an account by entering the account key, password, and amount.
-4. **Withdraw Money**: Withdraw money from an account by entering the account key, password, and amount.
-5. **Modify Account**: Modify account details by entering the account key and password.
-6. **Delete Account**: Delete an account by entering the account key and password.
-7. **Manage Accounts**: Access the account management menu (admin only).
+1. **Create Account**
+2. **Show Account Details**
+3. **Deposit Money**
+4. **Withdraw Money**
+5. **Modify Account**
+6. **Delete Account**
+7. **Administrative Management** (enter `5726` to access)
 
-### Management Menu
+### Administrative Commands
 
-** To GO TO Management Menu ENTER 5726 
-
-1. **Operation on Open Account**: View and manage open accounts.
-2. **Operation on Delete Account**: View and manage deleted accounts.
-3. **Find Account**: Find an account by name.
-4. **Modify Account**: Modify account details by name or key.
+1. **Operation on Open Accounts**
+2. **Operation on Deleted Accounts**
+3. **Find Account**
+4. **Modify Account**
 
 ## Compilation
 
-To compile the program, use the following command:
+To compile the program, use a C++ compiler such as `g++`:
 
 ```sh
-g++ -o bank_management_system bank_management_system.cpp
+g++ -o bank_management_system main.cpp
 ```
 
-To run the compiled program:
+Then, run the compiled program:
 
 ```sh
 ./bank_management_system
@@ -79,12 +99,77 @@ To run the compiled program:
 
 ## Dependencies
 
-- C++ standard library
+The program uses standard C++ libraries, including `<iostream>`, `<fstream>`, `<limits>`, and `<cstdlib>`. Ensure that your development environment has these standard libraries available.
 
-## Author
+## Note
 
-This project was created by Rahul Lalwani.
+- This is a console-based application. It does not include a graphical user interface.
+- Error handling and input validation are minimal. For a production system, consider enhancing these aspects.
+- The system uses `system("cls")` for clearing the console, which is platform-dependent. Modify this for your specific platform if necessary.
 
-## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+
+
+
+To access the administrative management interface, you need to enter a specific command in the main menu. The command for accessing this interface is `5726`. Below is a detailed reference for entering the administrative management section:
+
+## How to Enter Administrative Management
+
+1. **Run the Program**: Start the Bank Management System by running the compiled executable.
+
+2. **Main Menu**: When the program starts, you will be presented with the main menu. It will look like this:
+
+    ```
+    Welcome to bank manage
+    ===================================================================================================
+                            Main Meniu
+    ===================================================================================================
+    Press Enter to Continue...
+    ```
+
+3. **Enter the Main Menu**: Press `Enter` to proceed to the main menu options.
+
+4. **Main Menu Options**: The main menu provides several options for account operations:
+
+    ```
+    Enter Your Command : 
+
+    1. Create Account           |       2. Show Detail
+    3. Deposite Money           |       4. Withdraw Money
+    5. Modify Account           |       6. Delete Account
+    ```
+
+5. **Administrative Management Command**: To access the administrative management interface, enter `5726` as the command:
+
+    ```
+    Enter Your Command : 
+    5726
+    ```
+
+6. **Administrative Interface**: Upon entering the command `5726`, you will enter the administrative management interface, which looks like this:
+
+    ```
+    ===================================================================================================
+                            Your Enter Bank Manage Account
+
+                            Main Meniu
+
+    ===================================================================================================
+    Press Enter to Continue...
+    ```
+
+7. **Administrative Commands**: Press `Enter` to proceed to the administrative commands menu. Here you can manage open and deleted accounts, find accounts, and modify account details. The options are:
+
+    ```
+    Enter Your Command :->
+
+    1. Operation on Open Account      |       2. Operation on Delete Account 
+    3. Find Account                   |       4. Modify Account
+    ```
+
+## Summary
+
+- **Access Administrative Interface**: Enter `5726` in the main menu to access the administrative management.
+- **Navigate Administrative Menu**: Use the options provided to manage and modify accounts, both active and deleted.
+
+This guide helps you understand how to navigate and access the administrative functions within the Bank Management System.
