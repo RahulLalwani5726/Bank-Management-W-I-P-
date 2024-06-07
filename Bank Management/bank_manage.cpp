@@ -4,6 +4,7 @@ class bank
 {
 protected:
     string Account_sta;
+    string date;
     string name;
     static int total_acc;
     long long int A_no = 0;
@@ -38,6 +39,7 @@ public:
         cin >> pass;
         A_no = rand() % 9999999999;
         total_acc++;
+        date = __DATE__;
         show(pass);
         getchar();
     }
@@ -52,15 +54,18 @@ public:
         }
         system("cls");
         cout << "Account Status : " << Account_sta << endl;
+        cout << "Date: " << __DATE__ << endl;
         cout << "Account Holder name : " << name << endl;
-        cout << "Your Account NUMBER is :-> " << A_no << endl;
-        cout << "Your Total ammount is :-> " << ammount << endl;
-        cout << "Your Password is :-> " << pass << endl;
-        cout << "YOUR KEY IS : " << total_acc - 1 << endl;
+        cout << "Account NUMBER is: " << A_no << endl;
+        cout << "Account Opening Date: " << date << endl;
+        cout << "Password is : " << pass << endl;
+        cout << "KEY IS : " << total_acc - 1 << endl;
+        cout << "Total ammount: " << ammount << endl;
         string s = name;
         s += "_";
         s += to_string(A_no);
-        // s +=total_acc;
+        s += "_";
+        s += __DATE__;
         s += "_Detail.txt";
         char a;
         cout << "Press 1 For Get DETAIL in TEXT: ";
@@ -73,10 +78,13 @@ public:
             f.open(s, std::fstream::__noreplace);
             f << "\t\t\t\tAccount Detail Respit\n"
               << "=================================================================\n";
+            f << "DATE: " << __DATE__ << endl
+              << endl;
             f << "Account Type: " << Account_sta << endl;
-            f << "Account KEY: " << total_acc - 1 << endl;
             f << "The Account Holer Name: " << name << endl;
+            f << "Account Oppening DATE: " << date;
             f << "Account NO: " << A_no << endl;
+            f << "Account KEY: " << total_acc - 1 << endl;
             f << "Account Password: " << pass << endl;
             f << "Total Balance: " << ammount << endl;
         }
@@ -105,8 +113,8 @@ public:
         cout << "\nYour current ammount is " << ammount << endl;
         char a;
         getchar();
-        a = getchar();
         cout << "Press 1 For Get Respit: ";
+        a = getchar();
         if (a == '1')
         {
             string s = name;
@@ -114,6 +122,8 @@ public:
             s += to_string(A_no);
             s += "_";
             s += to_string(i);
+            s += "_";
+            s += __DATE__;
             // s +=total_acc;
             s += "_Deposite.txt";
             cout << "Genrating Respit \n\n \t 100%\n ";
@@ -121,8 +131,9 @@ public:
             f.open(s, std::fstream::__noreplace);
             f << "\t\t\t\tDeposite Respit\n"
               << "=================================================================\n";
+            f << "DATE: " << __DATE__ << endl<<endl;
             f << "Account Type: " << Account_sta << endl;
-            f << "\nThe Account Holer Name: " << name << endl;
+            f << "The Account Holer Name: " << name << endl;
             f << "Account NO: " << A_no << endl;
             f << "deposite Ammount: " << am << endl;
             f << "Total Balance: " << ammount << endl;
@@ -163,21 +174,24 @@ public:
         s += to_string(A_no);
         s += "_";
         s += to_string(j);
+        s += "_";
+        s += __DATE__;
         s += "_Withdraw.txt";
-        cout << "Genrating Respit \n\n \t 100%\n ";
         char a;
-        cout << "Press 1 For Get Respit: ";
         getchar();
+        cout << "Press 1 For Get Respit: ";
         a = getchar();
         if (a == '1')
         {
+            cout << "Genrating Respit \n\n \t 100%\n ";
             cout << "Genrating Respit \n \t 0%\n ";
             ofstream f;
             f.open(s, fstream::__noreplace);
             f << "\t\t\t\tWithDraw Respit\n"
               << "=================================================================\n";
+            f << "DATE: " << __DATE__ << endl<<endl;
             f << "Account Type: " << Account_sta << endl;
-            f << "\nThe Account Holer Name: " << name << endl;
+            f << "The Account Holer Name: " << name << endl;
             f << "Account NO: " << A_no << endl;
             f << "Withdraw Ammount: " << with << endl;
             f << "Total Balance: " << ammount << endl;
