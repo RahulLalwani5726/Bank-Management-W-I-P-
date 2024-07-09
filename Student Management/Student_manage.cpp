@@ -323,7 +323,8 @@ int main()
             {
                 s.clear();
                 count = 0;
-                return 0;
+                del.clear();
+                dele = 0;
             }
         }
         else if (a == 4)
