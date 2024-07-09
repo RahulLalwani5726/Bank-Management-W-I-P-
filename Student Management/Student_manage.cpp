@@ -54,6 +54,9 @@ public:
         system("cls");
         system("cls");
         cout << "Student Detail Enterd Seccusfully \n";
+        getchar();
+        getchar();
+        sh();
     }
     // ---------------------- show by roll ------------------------
     void sh()
@@ -316,7 +319,7 @@ int main()
         }
         else if (a == 3)
         {
-            cout << "Are You Shure To Delete Whole Data !\npress 1";
+            cout << "Are You Shure To Delete Whole Data !\npress 1: ";
             getchar();
             char c = getchar();
             if (c == '1')
