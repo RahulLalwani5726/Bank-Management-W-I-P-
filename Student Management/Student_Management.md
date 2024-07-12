@@ -1,6 +1,3 @@
-Creating a README file for this code will help others understand its purpose, functionality, and usage. Here’s a template you can use to create the README:
-
----
 
 # Student Management System
 
@@ -57,7 +54,7 @@ This is a simple student management system implemented in C++. It allows users t
 
 ## Credits
 
-- **Author:** [Your Name]
+- **Author:** [Rahul lalwani]
 - **Date:** [Date of last modification or creation]
 
 ---
